@@ -1,0 +1,38 @@
+[
+    {
+        "id" : 1,
+        "name" : "Banana",
+        "photo" : "bananas",
+        "price" : 6.90
+    },
+    {
+        "id" : 2,
+        "name" : "Melancia",
+        "photo" : "watermelon",
+        "price" : 8.00
+    },
+    {
+        "id" : 3,
+        "name" : "Uva",
+        "photo" : "grape",
+        "price" : 5.00
+    },
+    {
+        "id" : 4,
+        "name" : "Feijão",
+        "photo" : "bean",
+        "price" : 4.99
+    },
+    {
+        "id" : 5,
+        "name" : "Cerveja",
+        "photo" : "beer-can",
+        "price" : 2.99
+    },
+    {
+        "id" : 6,
+        "name" : "Arroz",
+        "photo" : "rice",
+        "price" : 12.90
+    }
+]
