@@ -4,17 +4,23 @@ import Cart from './pages/Cart/Cart';
 import Login from './pages/Login/Login';
 import Market from './pages/Market/Market';
 import PageSlide from './common/animations/PageSlide';
+import { UserProvider } from './common/context/User';
+import { CartProvider } from './common/context/CartItems';
 
 function App() {
   return (
     <>
-      <PageSlide>
-          <Routes>
+      <Routes>    
+        <Route element={<UserProvider />}>
+          <Route element={<PageSlide />}>
             <Route path='/' element={<Login />}/>
-            <Route path='/market' element={<Market />}/>
+            <Route element={<CartProvider />}>
+              <Route path='/market' element={<Market />}/>
+            </Route>
             <Route path='/cart' element={<Cart />} />
-          </Routes>
-      </PageSlide>
+          </Route>
+        </Route>       
+      </Routes>
     </>
   );
 }

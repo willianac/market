@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import {useTransition, animated} from "react-spring"
 
 export default function PageSlide({ children }) {
@@ -9,6 +9,6 @@ export default function PageSlide({ children }) {
         leave : {opacity : 0, transform : 'translate(-90%, 0)', position : 'absolute'},
       })
       return transitions((style, items) => (
-        <animated.div style={style}>{children}</animated.div>
+        <animated.div style={style}><Outlet /></animated.div>
       ))
 }

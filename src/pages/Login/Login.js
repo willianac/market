@@ -1,13 +1,14 @@
 import { Button, FormControl, Input, InputLabel } from "@mui/material"
-import { useState } from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../../common/context/User";
 import Conteiner, { InputConteiner } from "./styles";
-import { Teste } from "./styles";
+import { HeadTitle } from "./styles";
 
 const Login = () => {
-    const [name, setName] = useState()
-    const [saldo, setSaldo] = useState(0)
+    const {name, balance, setName, setBalance} = useContext(UserContext)
     const navigate = useNavigate()
+
     function onFormSubmit (e) {
        e.preventDefault()
        navigate('/market')
@@ -15,8 +16,14 @@ const Login = () => {
 
     return (
         <>
-            <Teste>Will's Market</Teste>
             <Conteiner>
+                <HeadTitle>
+                    <img 
+                        src="assets/supermarkets.png" 
+                        alt="a market icon" 
+                        style={{maxWidth : '45px', marginRight : '20px'}}>
+                    </img>Will's Market
+                </HeadTitle>
                 <InputConteiner onSubmit={onFormSubmit}>
                     <FormControl fullWidth>
                         <InputLabel>Nome</InputLabel>
@@ -24,9 +31,17 @@ const Login = () => {
                     </FormControl>
                     <FormControl fullWidth margin="dense">
                         <InputLabel>Saldo</InputLabel>
-                        <Input type="number" onChange={(event) => setSaldo(event.target.value)}/>
+                        <Input type="number" onChange={(event) => setBalance(event.target.value)}/>
                     </FormControl>
-                    <Button variant="contained" color="primary" type="submit" fullWidth style={{marginTop : '20px'}}>Prosseguir</Button>
+                    <Button 
+                        variant="contained" 
+                        color="primary" 
+                        type="submit" 
+                        fullWidth 
+                        style={{marginTop : '20px'}} 
+                        disabled={!name || !balance}
+                    >Prosseguir
+                    </Button>
                 </InputConteiner>
             </Conteiner>
         </>

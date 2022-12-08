@@ -8,11 +8,16 @@ import styled from "styled-components";
 `
 export const InputConteiner = styled.form`
     width : 100%;
-    margin-bottom : 20px;
+    margin : 50px 0;
 `
 
-export const Teste = styled.h1 `
-    color : #004c4c
+export const HeadTitle = styled.h1 `
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap');
+    display : flex;
+    align-items : center;
+    font-family: 'Courier New', Courier, monospace;
+    font-size : 36px;
+    color : #004c4c;
 `
 
 
