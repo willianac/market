@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 import { Outlet } from "react-router-dom";
 
 export const PaymentContext = createContext()

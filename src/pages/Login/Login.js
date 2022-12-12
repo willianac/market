@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../common/context/User";
 import Conteiner, { InputConteiner } from "./styles";
 import { HeadTitle } from "./styles";
-
 const Login = () => {
     const {name, balance, setName, setBalance} = useContext(UserContext)
     const navigate = useNavigate()
