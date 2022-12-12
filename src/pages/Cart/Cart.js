@@ -2,9 +2,16 @@ import { Header, Main, TotalContainer } from "./styles"
 import ArrowBack from "@mui/icons-material/ArrowBack";
 import { FormControl, IconButton, MenuItem, Select } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { PaymentContext } from "../../common/context/Payment";
+import { UserContext } from "../../common/context/User";
+import { useCartContext } from "../../common/context/CartItems";
 
 const Cart = () => {
     const navigate = useNavigate()
+    const {payChoice, setPayChoice, payOptions, changePay} = useContext(PaymentContext)
+    const {balance} = useContext(UserContext)
+    const {totalOnCart, cartQuantity} = useCartContext()
     return (
         <Main>
             <Header>
@@ -16,21 +23,21 @@ const Cart = () => {
             <div></div>
             <div>
                 <FormControl fullWidth>
-                    <Select variant="standard">
-                        <MenuItem value={'boleto'}>Boleto</MenuItem>
-                        <MenuItem value={'cartão de crédito'}>Cartão de Crédito</MenuItem>
-                        <MenuItem value={'pix'}>Pix</MenuItem>
+                    <Select variant="standard" value={payChoice.id} onChange={(event) => changePay(event.target.value)}>
+                        {payOptions.map((option) => (
+                            <MenuItem value={option.id} key={option.id}>{option.name}</MenuItem>
+                        ))}
                     </Select>
                 </FormControl>
             </div>
             <TotalContainer>
                 <div>
                     <h1>Total: </h1>
-                    <span>R$25.50</span>
+                    <span>R${totalOnCart}</span>
                 </div>
                 <div>
                     <h1>Saldo: </h1>
-                    <span>R$30.00</span>
+                    <span>R${balance}</span>
                 </div>
                 <div>
                     <h1>Saldo final: </h1>

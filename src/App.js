@@ -6,18 +6,21 @@ import Market from './pages/Market/Market';
 import PageSlide from './common/animations/PageSlide';
 import { UserProvider } from './common/context/User';
 import { CartProvider } from './common/context/CartItems';
+import { PaymentProvider } from './common/context/Payment';
 
 function App() {
   return (
     <>
       <Routes>    
         <Route element={<UserProvider />}>
-          <Route element={<PageSlide />}>
-            <Route path='/' element={<Login />}/>
-            <Route element={<CartProvider />}>
-              <Route path='/market' element={<Market />}/>
+          <Route element={<CartProvider />}>
+            <Route element={<PaymentProvider />}>
+              <Route element={<PageSlide />}>
+                <Route path='/' element={<Login />}/>
+                <Route path='/market' element={<Market />}/>
+                <Route path='/cart' element={<Cart />} />
+              </Route>
             </Route>
-            <Route path='/cart' element={<Cart />} />
           </Route>
         </Route>       
       </Routes>

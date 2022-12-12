@@ -1,11 +1,10 @@
 import { Add, Remove } from "@mui/icons-material";
 import { Card, CardContent, IconButton, Typography } from "@mui/material";
-import { useContext } from "react";
-import { CartContext } from "../common/context/CartItems";
+import { useCartContext } from "../common/context/CartItems";
 import { CardButtons, CardHeader } from "./styles";
 
 const Product = ({ id, name, photo, price}) => {
-    const { cart, addOnCart, removeItem } = useContext(CartContext)
+    const { cart, addOnCart, removeItem } = useCartContext()
     const howManyInTheCart = cart.find((item) => item.id === id)
     
     return (

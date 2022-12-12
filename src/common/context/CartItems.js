@@ -1,11 +1,23 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
+import { PaymentContext } from "./Payment";
 
 export const CartContext = createContext()
 export const CartProvider = () => {
     const [cart, setCart] = useState([])
-    const [cartQuantity, set] = useState(0)
+    const [cartQuantity, setQuantity] = useState(0)
+    const [totalOnCart, setTotal] = useState(0)
 
+    return (
+        <CartContext.Provider value={{cart, setCart, setQuantity, setTotal, cartQuantity, totalOnCart}}>
+            <Outlet />
+        </CartContext.Provider>
+    )
+}
+
+export const useCartContext = () => {
+    const {cart, setCart, cartQuantity, setQuantity, totalOnCart, setTotal} = useContext(CartContext)
+    const {payOptions, payChoice} = useContext(PaymentContext)
     function changeQuantity(id, variation) {
         const updatedCart = cart.map((item) => {
             if(item.id === id) {item.quantity += variation}
@@ -35,15 +47,22 @@ export const CartProvider = () => {
     }
 
     useEffect(() => {
-        const quantity = cart.reduce((acum, item) => {
-            return acum += item.quantity
-        },0)
-        set(quantity)
-    },[cart])
+        const {quantity, total} = cart.reduce((acum, item) => {
+            return {
+                quantity : acum.quantity += item.quantity,
+                total : acum.total += (item.price * item.quantity)
+            }
+        },{quantity : 0, total : 0})
+        setQuantity(quantity)
+        setTotal(total * payChoice.juros)
+    },[cart, setQuantity, setTotal, payOptions, payChoice])
 
-    return (
-        <CartContext.Provider value={{cart, setCart, addOnCart, removeItem, cartQuantity}}>
-            <Outlet />
-        </CartContext.Provider>
-    )
+    return {
+        cart,
+        addOnCart,
+        removeItem,
+        cartQuantity,
+        totalOnCart,
+        setCart
+    }
 }
