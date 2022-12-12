@@ -4,6 +4,10 @@ export const Main = styled.main `
     width : 50%;
     margin : auto;
     padding : 20px;
+    button {
+        display : block;
+        margin : auto
+    }
 `
 
 export const Header = styled.header`
@@ -19,7 +23,7 @@ export const Header = styled.header`
 
 export const TotalContainer = styled.section `
     width : 50%;
-    margin : 80px auto auto;
+    margin : 80px auto 42px auto;
     > div {
         display : flex;
         align-items : center;

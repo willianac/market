@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import { PaymentContext } from "./Payment";
+import { UserContext } from "./User";
 
 export const CartContext = createContext()
 export const CartProvider = () => {
@@ -18,6 +19,7 @@ export const CartProvider = () => {
 export const useCartContext = () => {
     const {cart, setCart, cartQuantity, setQuantity, totalOnCart, setTotal} = useContext(CartContext)
     const {payOptions, payChoice} = useContext(PaymentContext)
+    const {balance, setBalance} = useContext(UserContext)
     function changeQuantity(id, variation) {
         const updatedCart = cart.map((item) => {
             if(item.id === id) {item.quantity += variation}
@@ -57,12 +59,18 @@ export const useCartContext = () => {
         setTotal(total * payChoice.juros)
     },[cart, setQuantity, setTotal, payOptions, payChoice])
 
+    function efetuarCompra() {
+        setBalance((balance - totalOnCart).toFixed(2))
+        setCart([])
+        
+    }
     return {
         cart,
         addOnCart,
         removeItem,
         cartQuantity,
         totalOnCart,
-        setCart
+        setCart,
+        efetuarCompra
     }
 }
