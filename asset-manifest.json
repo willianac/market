@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/market/static/css/main.a8f9fb67.css",
-    "main.js": "/market/static/js/main.6601609e.js",
-    "index.html": "/market/index.html",
-    "main.a8f9fb67.css.map": "/market/static/css/main.a8f9fb67.css.map",
-    "main.6601609e.js.map": "/market/static/js/main.6601609e.js.map"
+    "main.css": "/will-market/static/css/main.a8f9fb67.css",
+    "main.js": "/will-market/static/js/main.6d481c4a.js",
+    "index.html": "/will-market/index.html",
+    "main.a8f9fb67.css.map": "/will-market/static/css/main.a8f9fb67.css.map",
+    "main.6d481c4a.js.map": "/will-market/static/js/main.6d481c4a.js.map"
   },
   "entrypoints": [
     "static/css/main.a8f9fb67.css",
-    "static/js/main.6601609e.js"
+    "static/js/main.6d481c4a.js"
   ]
 }
